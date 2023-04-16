@@ -1,15 +1,83 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-
-var today = dayjs();
+let taskEl = $('col-8 col-md-10 description');
+let today = dayjs();
+let time = dayjs().format("H");
+let container = $(".container-lg");
+let taskHour = 
 $('#date').text(today.format('MMM D, YYYY'));
+let entry = $('#col-8 col-md-10 description').text(taskEl);
+let task = taskEl.val();
+// var entry = taskEl.val();
 
+let printTask = function(entry){
+  // let taskEl = $('<hour-1>');
+  taskEl.addClass('col-8 col-md-10 description');
+  taskEl.appendTo(entry);
+}
+
+var todos = [];
+let savedTodos = {
+  "time" : taskHour,
+  "task" : task
+};
+
+localStorage.setItem("savedTasks", JSON.stringify(savedTodos));
+
+
+
+container.on("click", ".saveBtn", function(event){
+let taskDiv = $(event.target).parent().val($(this).attr("data-time"));
+  console.log(taskDiv);
+  taskHour = parseInt(taskDiv.attr("data-time"));
+  console.log(taskHour);
+  task = taskDiv.children(".description").val();
+  console.log(task);
+});
+
+
+let storedTasks = JSON.parse(localStorage.getItem("savedTasks"));
+
+
+
+
+entry = localStorage.getItem('save');
 
 
 $(function () {
 
 });
+
+
+// var todos = [];
+
+// // The following function renders items in a todo list as <li> elements
+// function renderTodos() {
+//   // Clear todoList element and update todoCountSpan
+//   todoList.innerHTML = "";
+//   todoCountSpan.textContent = todos.length;
+
+//   // Render a new li for each todo
+//   for (var i = 0; i < todos.length; i++) {
+//     var todo = todos[i];
+
+//     var li = document.createElement("li");
+//     li.textContent = todo;
+//     li.setAttribute("data-index", i);
+
+//     var button = document.createElement("button");
+//     button.textContent = "Complete ✔️";
+
+//     li.appendChild(button);
+//     todoList.appendChild(li);
+//   }
+// }
+
+
+
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -29,3 +97,8 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 
+
+let handleFormSubmit = function (event) {
+  event.preventDefault();
+
+}
