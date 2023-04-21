@@ -57,7 +57,20 @@ function render(savedTasks){
 // 
   // 
 // }
-function init(){
+function displaySchedule() { 
+  let storedSchedule = JSON.parse(localStorage.getItem("schedule"));
+  let scheduleBoxes = document.querySelectorAll('.description');
+  for (i = 0; i < storedSchedule.length; i++) {
+  scheduleBoxes[i].textContent = storedSchedule[i].task
+  }};
+  
+// init ();
+$(function () {
+});
+
+let handleFormSubmit = function (event) {
+  event.preventDefault(); 
+  
   // event.push(savedTasks, "savedTodos");
   // render savedTasks
 //   var unicorn = localStorage.getItem("uinicorn-0")
@@ -65,13 +78,6 @@ function init(){
 //     unicorn = JSON.parse(unicorn);
 //     $container("[name=unicorn-name]").val(unicorn.unicornName);
 //     console.log(unicorn);
-  }
-// init ();
-$(function () {
-});
-
-let handleFormSubmit = function (event) {
-  event.preventDefault();
   // todoList.innerHTML = "";
   // todoCountSpan.textContent = todos.length;
   // event.push(savedTasks, "savedTodos");
